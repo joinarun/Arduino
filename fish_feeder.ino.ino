@@ -34,31 +34,33 @@
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = "1f8b1235b4e5401d9dbb03ab7be7d806";
+char auth[] = "1f8b1235b4e5401d9dbb03ab7be7d806845210";
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
 char ssid[] = "Not Connected Unsecured";
-char pass[] = "pranith@10may";
+char pass[] = "pranith@10may845210";
 
 Servo servo;
-
+Servo servo2;
 BLYNK_WRITE(V3)
 {
   servo.write(param.asInt());
 }
 
+BLYNK_WRITE(V2)
+{
+  servo2.write(param.asInt());
+}
+
 void setup()
 {
-  // Debug console
-  Serial.begin(9600);
-
   Blynk.begin(auth, ssid, pass);
-  // You can also specify server:
-  //Blynk.begin(auth, ssid, pass, "blynk-cloud.com", 80);
-  //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
-
+  pinMode(4,OUTPUT);
   servo.attach(2);
+  servo.write(0);
+  servo2.attach(14);
+  servo2.write(0);
 }
 
 void loop()
